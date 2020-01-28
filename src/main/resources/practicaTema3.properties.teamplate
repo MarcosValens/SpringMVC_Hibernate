@@ -1,5 +1,5 @@
 jdbc.driverClassName = com.mysql.cj.jdbc.Driver
-jdbc.url = jdbc:mysql://localhost:3306/movieAdvisor?useSSL=false
+jdbc.url = jdbc:mysql://localhost:3306//*DataBase URL*/?useSSL=false
 jdbc.username = /*DataBase User Name*/
 jdbc.password =  /*DataBase Password*/
 hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect

@@ -5,3 +5,5 @@
 .idea/dictionaries
 .idea/shelf
 ../src/main/resources/practicaTema3.properties
+# Datasource local storage ignored files
+/dataSources/
