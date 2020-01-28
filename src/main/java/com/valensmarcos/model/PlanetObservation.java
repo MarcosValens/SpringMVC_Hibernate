@@ -13,11 +13,11 @@ public class PlanetObservation {
     int id;
 
     @ManyToOne
-    @JoinColumn(name = "idplaneta")
+    @JoinColumn(name = "planeta_idplaneta")
     private Planet planet;
 
     @ManyToOne
-    @JoinColumn(name = "idusuari")
+    @JoinColumn(name = "usuari_idusuari")
     private User user;
 
     private String observations;
