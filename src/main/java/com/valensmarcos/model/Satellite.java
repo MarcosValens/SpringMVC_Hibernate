@@ -22,7 +22,7 @@ public class Satellite {
     private int speed;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "planeta_idplaneta")
+    @JoinColumn(name = "planeta_idplaneta", foreignKey = @ForeignKey(name = "idplaneta"))
     private Planet planet;
 
     public Satellite() {
