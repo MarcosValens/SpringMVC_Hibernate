@@ -10,7 +10,6 @@
   <packaging>war</packaging>
 
   <name>Practica Tema 3</name>
-  <!-- FIXME change it to the project's website -->
   <url>www.marcosvalens.com.es</url>
 
   <properties>
