@@ -1,7 +1,7 @@
 package com.valensmarcos.model;
 
 import javax.persistence.*;
-import java.math.BigInteger;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -20,6 +20,12 @@ public class Planet {
 
     @Column(name = "habitable")
     private byte habitable;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "planet")
+    private List<Satellite> satellites;
+
+    @OneToMany(mappedBy = "planet")
+    private List<PlanetObservation> planetObservations;
 
     public Planet() {
     }

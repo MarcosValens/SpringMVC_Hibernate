@@ -25,8 +25,8 @@ public class User {
     @Column(name = "cognoms")
     private String secondName;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Planet> planets;
+    @OneToMany(mappedBy = "user")
+    private List<PlanetObservation> planetObservations;
 
     public User() {
     }
