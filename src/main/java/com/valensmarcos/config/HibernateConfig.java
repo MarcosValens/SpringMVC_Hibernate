@@ -23,6 +23,7 @@ import java.util.Properties;
 public class HibernateConfig {
     @Autowired
     private Environment environment;
+
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
