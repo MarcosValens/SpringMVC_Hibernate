@@ -18,6 +18,13 @@ public class PlanetServiceImp implements PlanetQueryService {
     PlanetDao planetDao;
     private Predicate<Planet> predicate;
 
+   /* @Autowired
+    PlanetQueryService planetQueryService;
+
+    public void restart() {
+        this.planetQueryService.init();
+    }*/
+
     @Override
     public List<Planet> exec() {
         return null;
@@ -33,6 +40,11 @@ public class PlanetServiceImp implements PlanetQueryService {
     public PlanetQueryService anyName(String... name) {
         return null;
     }
+
+    public List<Planet> findAll() {
+        return planetDao.findAll();
+    }
+
 
     @Override
     public PlanetQueryService allPlanets(String... name) {

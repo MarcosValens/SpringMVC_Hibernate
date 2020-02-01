@@ -14,16 +14,10 @@ public class PlanetService {
     @Autowired
     PlanetDao planetDao;
 
-    @Autowired
-    PlanetQueryService planetQueryService;
 
-    public void restart() {
-        this.planetQueryService.init();
-    }
 
-    @Transactional
-    public List<Planet> findAll() {
-        return planetDao.findAll();
-    }
+
+
+
 
 }
