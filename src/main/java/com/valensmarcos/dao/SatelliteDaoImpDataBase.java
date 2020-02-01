@@ -1,9 +1,8 @@
 package com.valensmarcos.dao;
 
-import com.valensmarcos.model.Planet;
+import com.valensmarcos.model.Satellite;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -14,40 +13,32 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
-public class PlanetDaoImpDataBase implements PlanetDao {
+public class SatelliteDaoImpDataBase implements SatelliteDao {
 
     @Autowired
     private SessionFactory sessionFactory;
 
     @Override
-    public Planet findById(int id) {
-        return null;
-    }
-
-    @Override
-    public List<Planet> findAll() {
+    public List<Satellite> findAll() {
         Session session = sessionFactory.getCurrentSession();
         CriteriaBuilder cb = session.getCriteriaBuilder();
-        CriteriaQuery<Planet> cq = cb.createQuery(Planet.class); //indica que tipo de datos devolvera la query
-        Root<Planet> root = cq.from(Planet.class); //indica sobre que tabla hara la query
+        CriteriaQuery<Satellite> cq = cb.createQuery(Satellite.class);
+        Root<Satellite> root = cq.from(Satellite.class);
         cq.select(root);
         Query query = session.createQuery(cq);
         return query.getResultList();
     }
 
     @Override
-    public void insert(Planet planet) {
+    public void edit(Satellite satellite) {
         Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(planet);
+        session.saveOrUpdate(satellite);
     }
 
     @Override
-    public void edit(Planet planet) {
-
-    }
-
-    @Override
-    public void delete(int id) {
-
+    public Satellite byId(long id) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        Satellite satellite = currentSession.get(Satellite.class, id);
+        return satellite;
     }
 }

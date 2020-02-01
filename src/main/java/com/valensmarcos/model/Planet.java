@@ -22,7 +22,6 @@ public class Planet {
     private byte habitable;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "planet", orphanRemoval = true)
-    //preguntar si el mapped hace referencia  al nombre de la variable Planeta que tiene satelite o al nombre que tiene la relacion (tabla) entre ambas entidades
     private List<Satellite> satellites;
 
     @OneToMany(mappedBy = "planet")

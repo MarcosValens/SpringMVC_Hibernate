@@ -6,6 +6,7 @@
     <title>Planets</title>
 </head>
 <body>
+<c:import url="../teamplate/menu.html"></c:import>
 <ul>
     <c:forEach var="planet" items="${planets}">
         <li>${planet.name}</li>

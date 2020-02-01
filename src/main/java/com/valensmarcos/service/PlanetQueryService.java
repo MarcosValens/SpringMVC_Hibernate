@@ -12,9 +12,11 @@ public interface PlanetQueryService {
 
     PlanetQueryService anyName(String... name);
 
-    PlanetQueryService allPlanets(String... name);
-
     PlanetQueryService byMass(int mass);
 
     PlanetQueryService habitablePlanets(byte habitable);
+
+    List<Planet> findAll();
+
+    void save(Planet planet);
 }

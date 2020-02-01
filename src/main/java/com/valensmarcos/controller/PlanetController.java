@@ -2,7 +2,6 @@ package com.valensmarcos.controller;
 
 import com.valensmarcos.model.Planet;
 import com.valensmarcos.service.PlanetService;
-import com.valensmarcos.service.PlanetServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,12 +15,11 @@ import java.util.List;
 public class PlanetController {
 
     @Autowired
-    private PlanetServiceImp planetServiceImp;
+    private PlanetService planetService;
 
     @GetMapping("/planets")
     public String getPlanets(Model model) {
-        List<Planet> planets = planetServiceImp.findAll();
-        System.out.println(planets);
+        List<Planet> planets = planetService.findAll();
         model.addAttribute("planets", planets);
         return "planets";
     }
