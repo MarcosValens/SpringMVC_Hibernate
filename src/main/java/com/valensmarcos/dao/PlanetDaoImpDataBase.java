@@ -21,7 +21,8 @@ public class PlanetDaoImpDataBase implements PlanetDao {
 
     @Override
     public Planet findById(int id) {
-        return null;
+        Session currentSession = sessionFactory.getCurrentSession();
+        return currentSession.get(Planet.class, id);
     }
 
     @Override
@@ -48,6 +49,8 @@ public class PlanetDaoImpDataBase implements PlanetDao {
 
     @Override
     public void delete(int id) {
-
+        Session session = sessionFactory.getCurrentSession();
+        Planet planet = session.byId(Planet.class).load(id);
+        session.delete(planet);
     }
 }

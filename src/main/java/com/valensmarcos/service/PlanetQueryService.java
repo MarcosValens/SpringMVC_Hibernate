@@ -18,5 +18,9 @@ public interface PlanetQueryService {
 
     List<Planet> findAll();
 
+    Planet getById(int id);
+
     void save(Planet planet);
+
+    void delete(int id);
 }

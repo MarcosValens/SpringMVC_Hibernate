@@ -6,27 +6,27 @@
     <title>Planet Form</title>
 </head>
 <body>
-<c:import url="../teamplate/menu.html"></c:import>
-<form action="savePlanet" method="post">
+<c:import url="../teamplate/menu.html"/>
+<form action="${pageContext.request.contextPath}/planetForm/savePlanet" method="post">
 
-    <input type="hidden" name="idPlanet" value="${planet.getId()}">
+    <input type="hidden" name="idPlanet" value="${planet.id}">
 
     <label>Name Planet:<br>
-        <input type="text" name="namePlanet" value="${planet.getName()}"><br>
+        <input type="text" name="namePlanet" value="${planet.name}"><br>
     </label>
 
     <label>Mass:<br>
-        <input type="text" name="massPlanet" value="${planet.getMass()}"><br>
+        <input type="text" name="massPlanet" value="${planet.mass}"><br>
     </label>
 
     <label>Habitable:<br>
-        <input type="checkbox" name="habitablePlanet" value="YES ${(planet.isHabitable())?"checked":""}"><br>
+        <input type="checkbox" name="habitablePlanet" value="YES${(planet.habitable == 1)?"checked":""}"><br>
     </label>
 
     <label>Satellites:<br>
     <select multiple id="option" name="satellitesPlanet">
         <c:forEach var="satellite" items="${satellites}">
-            <option value="${satellite.getId()}">${satellite.getName()}</option>
+            <option value="${satellite.id}">${satellite.name}</option>
         </c:forEach>
     </select>
     </label>

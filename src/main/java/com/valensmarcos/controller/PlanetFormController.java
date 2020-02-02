@@ -24,20 +24,30 @@ public class PlanetFormController {
     private SatelliteService satelliteService;
 
     @GetMapping("/planetForm")
-    public String toPlanetForm(Model model) {
+    public String savePlanet(Model model) {
         List<Satellite> satellites = satelliteService.findAll();
         model.addAttribute("satellites", satellites);
-        return "planetForm";
+        return "addPlanet";
     }
 
-    @PostMapping("/savePlanet")
+    @GetMapping("/planetForm/{idPlanet}")
+    public String updatePlanet(Model model, @PathVariable(value = "idPlanet", required = false) String idPlanet) {
+        if (idPlanet != null){
+            Planet planet = planetService.getById(Integer.parseInt(idPlanet));
+            model.addAttribute("planet", planet);
+        }
+        List<Satellite> satellites = satelliteService.findAll();
+        model.addAttribute("satellites", satellites);
+        return "addPlanet";
+    }
+
+    @PostMapping("/planetForm/savePlanet")
     public RedirectView save(
             @RequestParam("idPlanet") String idPlanet,
             @RequestParam("namePlanet") String namePlanet,
             @RequestParam("massPlanet") String massPlanet,
             @RequestParam(value = "habitablePlanet", required = false) String habitablePlanet,
             @RequestParam(value = "satellitesPlanet", required = false) String satellitesPlanet) {
-        System.out.println(satellitesPlanet);
         Planet planet = new Planet();
         planet.setName(namePlanet);
         planet.setMass(Long.parseLong(massPlanet));
@@ -48,15 +58,18 @@ public class PlanetFormController {
                 planet.setHabitable((byte) 0);
             }
         }
+        if (!idPlanet.equals("")){
+            planet.setId(Integer.parseInt(idPlanet));
+        }
         planetService.save(planet);
         if (satellitesPlanet != null){
-            String satellitesForUpdate[] = satellitesPlanet.split(",");
+            String[] satellitesForUpdate = satellitesPlanet.split(",");
             for (String satelliteId: satellitesForUpdate) {
                 Satellite updatedSatellite = satelliteService.byId(Long.parseLong(satelliteId));
                 updatedSatellite.setPlanet(planet);
                 satelliteService.save(updatedSatellite);
             }
         }
-        return new RedirectView("./planets");
+        return new RedirectView("../planets");
     }
 }

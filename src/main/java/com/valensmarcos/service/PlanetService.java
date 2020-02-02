@@ -39,6 +39,11 @@ public class PlanetService implements PlanetQueryService {
         return planetDao.findAll();
     }
 
+    @Override
+    public Planet getById(int id){
+        return planetDao.findById(id);
+    }
+
     /*@Override
     public PlanetQueryService allPlanets(String... name) {
         Predicate<Planet> pAllPlanets = (planet -> Arrays.stream(name).allMatch(planet.getName()::contains));
@@ -59,5 +64,10 @@ public class PlanetService implements PlanetQueryService {
     @Override
     public void save(Planet planet){
         planetDao.insert(planet);
+    }
+
+    @Override
+    public void delete(int id) {
+        planetDao.delete(id);
     }
 }
