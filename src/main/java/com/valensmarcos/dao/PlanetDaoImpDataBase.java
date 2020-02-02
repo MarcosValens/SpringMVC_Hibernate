@@ -3,7 +3,6 @@ package com.valensmarcos.dao;
 import com.valensmarcos.model.Planet;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -29,8 +28,8 @@ public class PlanetDaoImpDataBase implements PlanetDao {
     public List<Planet> findAll() {
         Session session = sessionFactory.getCurrentSession();
         CriteriaBuilder cb = session.getCriteriaBuilder();
-        CriteriaQuery<Planet> cq = cb.createQuery(Planet.class); //indica que tipo de datos devolvera la query
-        Root<Planet> root = cq.from(Planet.class); //indica sobre que tabla hara la query
+        CriteriaQuery<Planet> cq = cb.createQuery(Planet.class);
+        Root<Planet> root = cq.from(Planet.class);
         cq.select(root);
         Query query = session.createQuery(cq);
         return query.getResultList();

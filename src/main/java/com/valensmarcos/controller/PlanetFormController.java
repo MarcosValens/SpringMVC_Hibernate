@@ -32,7 +32,7 @@ public class PlanetFormController {
 
     @GetMapping("/planetForm/{idPlanet}")
     public String updatePlanet(Model model, @PathVariable(value = "idPlanet", required = false) String idPlanet) {
-        if (idPlanet != null){
+        if (idPlanet != null) {
             Planet planet = planetService.getById(Integer.parseInt(idPlanet));
             model.addAttribute("planet", planet);
         }
@@ -58,13 +58,13 @@ public class PlanetFormController {
                 planet.setHabitable((byte) 0);
             }
         }
-        if (!idPlanet.equals("")){
+        if (!idPlanet.equals("")) {
             planet.setId(Integer.parseInt(idPlanet));
         }
         planetService.save(planet);
-        if (satellitesPlanet != null){
+        if (satellitesPlanet != null) {
             String[] satellitesForUpdate = satellitesPlanet.split(",");
-            for (String satelliteId: satellitesForUpdate) {
+            for (String satelliteId : satellitesForUpdate) {
                 Satellite updatedSatellite = satelliteService.byId(Long.parseLong(satelliteId));
                 updatedSatellite.setPlanet(planet);
                 satelliteService.save(updatedSatellite);

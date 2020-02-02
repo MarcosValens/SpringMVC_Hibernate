@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SatelliteService implements SatelliteQueryService{
+public class SatelliteService implements SatelliteQueryService {
 
     @Autowired
     SatelliteDao satelliteDao;

@@ -23,7 +23,5 @@ public interface SatelliteQueryService {
 
     Satellite byId(long id);
 
-
-
     void save(Satellite satellite);
 }
