@@ -6,7 +6,7 @@
     <title>Planet Form</title>
 </head>
 <body>
-<c:import url="../teamplate/menu.html"/>
+<c:import url="../teamplate/menu.jsp"/>
 <form action="${pageContext.request.contextPath}/planetForm/savePlanet" method="post">
 
     <input type="hidden" name="idPlanet" value="${planet.id}">
@@ -20,7 +20,7 @@
     </label>
 
     <label>Habitable:<br>
-        <input type="checkbox" name="habitablePlanet" value="YES${(planet.habitable == 1)?"checked":""}"><br>
+        <input type="checkbox" name="habitablePlanet" ${(planet.habitable == 1)?"checked":""} ><br>
     </label>
 
     <label>Satellites:<br>
