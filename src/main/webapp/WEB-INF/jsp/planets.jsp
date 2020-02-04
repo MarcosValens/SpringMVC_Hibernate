@@ -6,7 +6,7 @@
     <title>Planets</title>
 </head>
 <body>
-<c:import url="../teamplate/menu.html"/>
+<c:import url="../teamplate/menu.jsp"/>
 <table>
     <tr>Planet ID</tr>
     <tr>Planet Name</tr>
