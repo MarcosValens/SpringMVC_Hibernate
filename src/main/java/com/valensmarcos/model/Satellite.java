@@ -12,7 +12,7 @@ public class Satellite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "nom")
+    @Column(name = "nom", nullable = false)
     private String name;
 
     @Column(name = "massa")

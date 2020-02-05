@@ -12,13 +12,13 @@ public class Planet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "nom")
+    @Column(name = "nom", nullable = false)
     private String name;
 
     @Column(name = "massa")
     private long mass;
 
-    @Column(name = "habitable")
+    @Column(name = "habitable", nullable = false)
     private byte habitable;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "planet", orphanRemoval = true)

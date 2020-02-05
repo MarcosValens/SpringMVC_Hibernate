@@ -1,6 +1,7 @@
 package com.valensmarcos.config;
 
 
+import com.valensmarcos.filters.LoggerInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -28,6 +29,6 @@ public class AppConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        //registry.addInterceptor(new ErrorHandleFilter()).addPathPatterns("/**").excludePathPatterns("/login");
+        registry.addInterceptor(new LoggerInterceptor()).addPathPatterns("/**").excludePathPatterns("/login");
     }
 }

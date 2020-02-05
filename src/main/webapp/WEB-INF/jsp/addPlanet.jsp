@@ -20,17 +20,16 @@
     </label>
 
     <label>Habitable:<br>
-        <input type="checkbox" name="habitablePlanet" ${(planet.habitable == 1)?"checked":""} ><br>
+        <input type="checkbox" name="habitablePlanet" value="YES" ${(planet.habitable == 1)?"checked":""} ><br>
     </label>
 
     <label>Satellites:<br>
-    <select multiple id="option" name="satellitesPlanet">
-        <c:forEach var="satellite" items="${satellites}">
-            <option value="${satellite.id}">${satellite.name}</option>
-        </c:forEach>
-    </select>
+        <select multiple id="option" name="satellitesPlanet">
+            <c:forEach var="satellite" items="${satellites}">
+                <option value="${satellite.id}">${satellite.name}</option>
+            </c:forEach>
+        </select>
     </label>
-
     <br>
     <br>
     <input type="submit" value="Submit">
@@ -39,9 +38,9 @@
 <script>
     let selection = document.getElementById('option');
     let values = new Array(selection.length);
-    selection.addEventListener('click', function(e) {
+    selection.addEventListener('click', function (e) {
         values[e.target.index] = !values[e.target.index];
-        for(var i=0;i<values.length;++i) {
+        for (var i = 0; i < values.length; ++i) {
             selection.options[i].selected = values[i];
         }
     });
