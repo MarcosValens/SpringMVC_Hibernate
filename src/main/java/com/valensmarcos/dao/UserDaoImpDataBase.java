@@ -1,5 +1,6 @@
 package com.valensmarcos.dao;
 
+import com.valensmarcos.model.Satellite;
 import com.valensmarcos.model.User;
 
 import org.hibernate.Session;
@@ -9,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
@@ -25,7 +29,14 @@ public class UserDaoImpDataBase implements UserDao {
 
     @Override
     public List<User> findAll() {
-        return null;
+
+        Session session = sessionFactory.getCurrentSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<User> cq = cb.createQuery(User.class);
+        Root<User> root = cq.from(User.class);
+        cq.select(root);
+        javax.persistence.Query query = session.createQuery(cq);
+        return query.getResultList();
     }
 
     @Override

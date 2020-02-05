@@ -15,7 +15,7 @@ public class UserService implements UserQueryService {
 
     @Override
     public List<User> findAll() {
-        return null;
+        return userDao.findAll();
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.valensmarcos.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Controller
 @Transactional
@@ -23,14 +25,17 @@ public class LoginController {
     UserService userService;
 
     @GetMapping("/login")
-    public String login() {
-
+    public String login(Model model) {
+        List<User> users = userService.findAll();
+        model.addAttribute("users",users);
         return "login";
     }
 
     @GetMapping("/logout")
-    public String logout(HttpSession httpSession){
-        httpSession.setAttribute("validate","NO");
+    public String logout(HttpSession httpSession, Model model){
+        httpSession.invalidate();
+        List<User> users = userService.findAll();
+        model.addAttribute("users",users);
         return "login";
     }
 

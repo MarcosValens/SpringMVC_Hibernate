@@ -8,7 +8,11 @@
 <body>
 <form action="login" method="post">
     <label>Username:<br>
-        <input type="text" name="userName">
+        <select type="text" name="userName">
+            <c:forEach var="user" items="${users}">
+                <option value="${user.userName}">${user.userName}</option>
+            </c:forEach>
+        </select>
     </label>
     <br>
     <label>Password: <br>

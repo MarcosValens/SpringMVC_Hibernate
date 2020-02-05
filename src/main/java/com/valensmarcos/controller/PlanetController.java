@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -40,15 +41,19 @@ public class PlanetController {
     public String getPlanets(Model model, HttpServletRequest request) {
         List<Planet> planets = planetService.findAll();
         List<Satellite> satellites = satelliteService.findAll();
-        int userId = (int)request.getSession().getAttribute("userId");
-        if (userId != 0){
+        int userId = 0;
+        if (request.getSession().getAttribute("userId") != null) {
+            userId = (int) request.getSession().getAttribute("userId");
+        }
+        if (userId != 0) {
             User user = userService.findById(userId);
             List<PlanetObservation> planetObservations = planetObservationQueryService.findAll(userId);
-            model.addAttribute("user",user);
-            model.addAttribute("observation",planetObservations);
+            model.addAttribute("user", user);
+            model.addAttribute("observation", planetObservations);
         }
         model.addAttribute("planets", planets);
         model.addAttribute("satellites", satellites);
         return "planets";
     }
 }
+

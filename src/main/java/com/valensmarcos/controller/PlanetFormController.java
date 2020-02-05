@@ -3,6 +3,7 @@ package com.valensmarcos.controller;
 import com.valensmarcos.model.Planet;
 import com.valensmarcos.model.Satellite;
 import com.valensmarcos.model.User;
+import com.valensmarcos.service.PlanetObservationQueryService;
 import com.valensmarcos.service.PlanetService;
 import com.valensmarcos.service.SatelliteService;
 import com.valensmarcos.service.UserService;
@@ -13,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -24,6 +27,12 @@ public class PlanetFormController {
 
     @Autowired
     private SatelliteService satelliteService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private PlanetObservationQueryService planetObservationQueryService;
 
     @GetMapping("/planetForm")
     public String savePlanet(Model model) {
@@ -44,12 +53,13 @@ public class PlanetFormController {
     }
 
     @PostMapping("/planetForm/savePlanet")
-    public RedirectView save(
-            @RequestParam("idPlanet") String idPlanet,
-            @RequestParam("namePlanet") String namePlanet,
-            @RequestParam("massPlanet") String massPlanet,
-            @RequestParam(value = "habitablePlanet", required = false) String habitablePlanet,
-            @RequestParam(value = "satellitesPlanet", required = false) String satellitesPlanet) {
+    public RedirectView save(HttpServletRequest request,
+                             @RequestParam("idPlanet") String idPlanet,
+                             @RequestParam("namePlanet") String namePlanet,
+                             @RequestParam("massPlanet") String massPlanet,
+                             @RequestParam(value = "habitablePlanet", required = false) String habitablePlanet,
+                             @RequestParam(value = "satellitesPlanet", required = false) String satellitesPlanet,
+                             @RequestParam(value = "observation", required = false) String observation) {
         Planet planet = new Planet();
         planet.setName(namePlanet);
         planet.setMass(Long.parseLong(massPlanet));
