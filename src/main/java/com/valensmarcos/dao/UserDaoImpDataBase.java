@@ -19,7 +19,8 @@ public class UserDaoImpDataBase implements UserDao {
 
     @Override
     public User findById(int id) {
-        return null;
+        Session session = sessionFactory.getCurrentSession();
+        return session.get(User.class, id);
     }
 
     @Override
@@ -60,16 +61,7 @@ public class UserDaoImpDataBase implements UserDao {
 
     @Override
     public User findByUserNameAndId(String userName, String id) {
-        Session session = sessionFactory.getCurrentSession();
-        String hql = "FROM User WHERE userName=:userName " + "AND id=:id";
-        Query query = session.createQuery(hql);
-        query.setParameter("userName", userName);
-        query.setParameter("id", id);
-        try {
-            return (User) query.getSingleResult();
-        } catch (NoResultException ex) {
-            System.out.println(ex);
-            return null;
-        }
+        return null;
     }
 }
+

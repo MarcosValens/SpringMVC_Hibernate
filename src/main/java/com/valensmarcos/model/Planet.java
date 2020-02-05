@@ -69,6 +69,14 @@ public class Planet {
         this.habitable = habitable;
     }
 
+    public List<PlanetObservation> getPlanetObservations() {
+        return planetObservations;
+    }
+
+    public void setPlanetObservations(List<PlanetObservation> planetObservations) {
+        this.planetObservations = planetObservations;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

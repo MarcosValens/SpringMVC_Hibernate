@@ -1,5 +1,7 @@
 package com.valensmarcos.model;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -18,6 +20,7 @@ public class PlanetObservation {
 
     @ManyToOne
     @JoinColumn(name = "usuari_idusuari")
+    @Type(type = "User")
     private User user;
 
     private String observations;

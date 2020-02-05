@@ -2,8 +2,10 @@ package com.valensmarcos.controller;
 
 import com.valensmarcos.model.Planet;
 import com.valensmarcos.model.Satellite;
+import com.valensmarcos.model.User;
 import com.valensmarcos.service.PlanetService;
 import com.valensmarcos.service.SatelliteService;
+import com.valensmarcos.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;

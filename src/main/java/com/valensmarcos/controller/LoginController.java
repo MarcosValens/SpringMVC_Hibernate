@@ -24,6 +24,13 @@ public class LoginController {
 
     @GetMapping("/login")
     public String login() {
+
+        return "login";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession httpSession){
+        httpSession.setAttribute("validate","NO");
         return "login";
     }
 

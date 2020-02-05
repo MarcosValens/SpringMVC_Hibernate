@@ -19,8 +19,8 @@ public class UserService implements UserQueryService {
     }
 
     @Override
-    public User findById(long id) {
-        return null;
+    public User findById(int id) {
+        return userDao.findById(id);
     }
 
     @Override

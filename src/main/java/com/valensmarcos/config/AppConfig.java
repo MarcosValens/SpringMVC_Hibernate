@@ -29,6 +29,6 @@ public class AppConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoggerInterceptor()).addPathPatterns("/**").excludePathPatterns("/login");
+        registry.addInterceptor(new LoggerInterceptor()).addPathPatterns("/**").excludePathPatterns("/login","/planets");
     }
 }

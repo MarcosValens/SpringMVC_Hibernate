@@ -8,7 +8,7 @@ public interface UserQueryService {
 
     List<User> findAll();
 
-    User findById(long id);
+    User findById(int id);
 
     User validation(String userName, String password);
 

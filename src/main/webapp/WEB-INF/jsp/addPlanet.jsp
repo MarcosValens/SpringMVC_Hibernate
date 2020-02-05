@@ -24,11 +24,15 @@
     </label>
 
     <label>Satellites:<br>
-        <select multiple id="option" name="satellitesPlanet">
+        <select multiple name="satellitesPlanet">
             <c:forEach var="satellite" items="${satellites}">
                 <option value="${satellite.id}">${satellite.name}</option>
             </c:forEach>
         </select>
+    </label>
+    <br>
+    <label>Observation:<br>
+        <textarea rows="4" cols="50" name="observation"></textarea>
     </label>
     <br>
     <br>

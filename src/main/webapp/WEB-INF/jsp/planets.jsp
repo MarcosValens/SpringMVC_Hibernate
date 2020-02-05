@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page isELIgnored="false" %>
+<%@ page session="true" %>
 <html>
 <head>
     <title>Planets</title>
@@ -13,8 +14,11 @@
     <tr>Planet Mass</tr>
     <tr>Is Habitable?</tr>
     <tr>Satellites</tr>
-    <tr>Edit</tr>
-    <tr>Delete</tr>
+    <c:if test="${user.id>0}">
+        <tr>Observations</tr>
+        <tr>Edit</tr>
+        <tr>Delete</tr>
+    </c:if>
     <c:forEach var="planet" items="${planets}">
         <tr>
             <td>${planet.id}</td>
@@ -30,15 +34,28 @@
                     </c:forEach>
                 </ul>
             </td>
-            <td>
-                <a href="${pageContext.request.contextPath}/planetForm/${planet.id}"><button>EDIT</button></a>
-            </td>
-            <td>
-                <form action="deletePlanet" method="post">
-                    <button type="submit">Delete</button>
-                    <input type="hidden" name="idPlanet" value="${planet.id}">
-                </form>
-            </td>
+            <td><c:forEach var="observation" items="${observation}">
+                <c:if test="${planet.id==observation.planet.id}">
+                    <ul>
+                        <li>
+                                ${observation.observations}
+                        </li>
+                    </ul>
+                </c:if>
+            </c:forEach></td>
+            <c:if test="${user.id>0}">
+                <td>
+                    <a href="${pageContext.request.contextPath}/planetForm/${planet.id}">
+                        <button>EDIT</button>
+                    </a>
+                </td>
+                <td>
+                    <form action="deletePlanet" method="post">
+                        <button type="submit">Delete</button>
+                        <input type="hidden" name="idPlanet" value="${planet.id}">
+                    </form>
+                </td>
+            </c:if>
         </tr>
     </c:forEach>
 </table>
