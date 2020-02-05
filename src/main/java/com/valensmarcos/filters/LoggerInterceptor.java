@@ -43,5 +43,5 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
             }
         }
         return validate != null && validate.equals("YES");
-    }
+    K
 }
