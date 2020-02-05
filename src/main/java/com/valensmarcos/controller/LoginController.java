@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 
 @Controller
 @Transactional
@@ -35,7 +36,8 @@ public class LoginController {
         if (user != null) {
             httpSession.setAttribute("validate", "YES");
             httpSession.setAttribute("userName", user.getUserName());
-            httpSession.setAttribute("usuerId", user.getId());
+            httpSession.setAttribute("userId", user.getId());
+            httpSession.setAttribute("lastActivity", LocalDateTime.now());
             return new RedirectView("./planets");
         } else {
             return new RedirectView("./login");
