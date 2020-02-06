@@ -36,14 +36,9 @@ public class PlanetDaoImpDataBase implements PlanetDao {
     }
 
     @Override
-    public void insert(Planet planet) {
+    public void insertOrUpdate(Planet planet) {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(planet);
-    }
-
-    @Override
-    public void edit(Planet planet) {
-
     }
 
     @Override

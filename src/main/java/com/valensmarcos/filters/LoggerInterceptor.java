@@ -2,7 +2,6 @@ package com.valensmarcos.filters;
 
 import com.valensmarcos.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.session.Session;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;

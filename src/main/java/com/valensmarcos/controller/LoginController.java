@@ -1,8 +1,7 @@
-
 package com.valensmarcos.controller;
 
 import com.valensmarcos.model.User;
-import com.valensmarcos.service.UserService;
+import com.valensmarcos.service.UserQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,20 +21,20 @@ import java.util.List;
 public class LoginController {
 
     @Autowired
-    UserService userService;
+    UserQueryService userService;
 
     @GetMapping("/login")
     public String login(Model model) {
         List<User> users = userService.findAll();
-        model.addAttribute("users",users);
+        model.addAttribute("users", users);
         return "login";
     }
 
     @GetMapping("/logout")
-    public String logout(HttpSession httpSession, Model model){
+    public String logout(HttpSession httpSession, Model model) {
         httpSession.invalidate();
         List<User> users = userService.findAll();
-        model.addAttribute("users",users);
+        model.addAttribute("users", users);
         return "login";
     }
 
@@ -44,7 +43,7 @@ public class LoginController {
                               @RequestParam("userName") String userName,
                               @RequestParam("password") String password
     ) {
-        User user = userService.validation(userName,password);
+        User user = userService.validation(userName, password);
         if (user != null) {
             httpSession.setAttribute("validate", "YES");
             httpSession.setAttribute("userName", user.getUserName());

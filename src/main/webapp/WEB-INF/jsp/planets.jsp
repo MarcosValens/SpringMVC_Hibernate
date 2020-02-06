@@ -14,7 +14,7 @@
     <tr>Planet Mass</tr>
     <tr>Is Habitable?</tr>
     <tr>Satellites</tr>
-    <c:if test="${user.id>0}">
+    <c:if test="${user.id > 0}">
         <tr>Observations</tr>
         <tr>Edit</tr>
         <tr>Delete</tr>
@@ -43,21 +43,25 @@
                     </ul>
                 </c:if>
             </c:forEach></td>
-            <c:if test="${user.id>0}">
-                <td>
-                    <a href="${pageContext.request.contextPath}/planetForm/${planet.id}">
-                        <button>EDIT</button>
-                    </a>
-                </td>
-                <td>
-                    <form action="deletePlanet" method="post">
-                        <button type="submit">Delete</button>
-                        <input type="hidden" name="idPlanet" value="${planet.id}">
-                    </form>
-                </td>
-            </c:if>
+            <c:forEach var="observation" items="${observation}">
+                <c:if test="${user.id == observation.user.id && planet.id == observation.planet.id}">
+                    <td>
+                        <a href="${pageContext.request.contextPath}/planetForm/${planet.id}">
+                            <button>EDIT</button>
+                        </a>
+                    </td>
+                    <td>
+                        <form action="deletePlanet" method="post">
+                            <button type="submit">Delete</button>
+                            <input type="hidden" name="idPlanet" value="${planet.id}">
+                        </form>
+                    </td>
+                </c:if>
+            </c:forEach>
         </tr>
     </c:forEach>
+    <p>user:${user.id}</p>
+    <p>observation:${observation.get(0).user.id}</p>
 </table>
 </body>
 </html>

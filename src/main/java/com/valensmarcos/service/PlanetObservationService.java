@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class PlanetObservationService implements PlanetObservationQueryService {
 
@@ -13,7 +14,12 @@ public class PlanetObservationService implements PlanetObservationQueryService {
     PlanetObservationDao planetObservationDao;
 
     @Override
-    public List<PlanetObservation> findAll(int id) {
-        return planetObservationDao.observationList(id);
+    public List<PlanetObservation> findAllFromUserId(int id) {
+        return planetObservationDao.observationListByUserId(id);
+    }
+
+    @Override
+    public void saveOrUpdate(PlanetObservation planetObservation) {
+        planetObservationDao.saveOrUpdate(planetObservation);
     }
 }

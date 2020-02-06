@@ -9,9 +9,7 @@ public interface PlanetDao {
 
     List<Planet> findAll();
 
-    void insert(Planet planet);
-
-    void edit(Planet planet);
+    void insertOrUpdate(Planet planet);
 
     void delete(int id);
 }

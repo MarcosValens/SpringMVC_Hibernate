@@ -28,8 +28,4 @@ public class UserService implements UserQueryService {
         return userDao.isValidUser(userName, password);
     }
 
-    @Override
-    public User findByUserNameAndId(String userName, String id) {
-        return userDao.findByUserNameAndId(userName,id);
-    }
 }

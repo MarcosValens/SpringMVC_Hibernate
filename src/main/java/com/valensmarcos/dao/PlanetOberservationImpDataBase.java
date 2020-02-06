@@ -1,8 +1,6 @@
 package com.valensmarcos.dao;
 
-import com.valensmarcos.model.Planet;
 import com.valensmarcos.model.PlanetObservation;
-import com.valensmarcos.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -13,19 +11,19 @@ import javax.persistence.NoResultException;
 import java.util.List;
 
 @Repository
-public class PlanetOberservationImpDataBase implements PlanetObservationDao{
+public class PlanetOberservationImpDataBase implements PlanetObservationDao {
+
     @Autowired
     SessionFactory sessionFactory;
 
     @Override
-    public List<PlanetObservation> observationList(int id) {
+    public List<PlanetObservation> observationListByUserId(int id) {
         Session session = sessionFactory.getCurrentSession();
         String hql = "FROM PlanetObservation WHERE user.id=:id";
         Query query = session.createQuery(hql);
         query.setParameter("id", id);
 
         try {
-            List<PlanetObservation> planetObservations = query.getResultList();
             return query.getResultList();
         } catch (NoResultException ex) {
             System.out.println(ex);
@@ -34,10 +32,8 @@ public class PlanetOberservationImpDataBase implements PlanetObservationDao{
     }
 
     @Override
-    public void saveOrUpdate(Planet planet, User user, PlanetObservation observation) {
+    public void saveOrUpdate(PlanetObservation observation) {
         Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(user);
-        session.saveOrUpdate(planet);
-        session.saveOrUpdate(observation);
+        session.persist(observation);
     }
 }

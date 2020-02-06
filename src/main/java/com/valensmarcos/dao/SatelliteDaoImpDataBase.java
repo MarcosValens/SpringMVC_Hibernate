@@ -38,7 +38,6 @@ public class SatelliteDaoImpDataBase implements SatelliteDao {
     @Override
     public Satellite byId(long id) {
         Session currentSession = sessionFactory.getCurrentSession();
-        Satellite satellite = currentSession.get(Satellite.class, id);
-        return satellite;
+        return currentSession.get(Satellite.class, id);
     }
 }

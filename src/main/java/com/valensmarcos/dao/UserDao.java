@@ -10,13 +10,5 @@ public interface UserDao {
 
     List<User> findAll();
 
-    void insert(User user);
-
-    void edit(User user);
-
-    void delete(int id);
-
     User isValidUser(String userName, String password);
-
-    User findByUserNameAndId(String userName, String id);
 }

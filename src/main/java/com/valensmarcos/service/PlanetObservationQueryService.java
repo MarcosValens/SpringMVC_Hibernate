@@ -5,5 +5,7 @@ import com.valensmarcos.model.PlanetObservation;
 import java.util.List;
 
 public interface PlanetObservationQueryService {
-    List<PlanetObservation> findAll(int id);
+    List<PlanetObservation> findAllFromUserId(int id);
+
+    void saveOrUpdate(PlanetObservation planetObservation);
 }

@@ -1,6 +1,5 @@
 package com.valensmarcos.dao;
 
-import com.valensmarcos.model.Satellite;
 import com.valensmarcos.model.User;
 
 import org.hibernate.Session;
@@ -40,22 +39,6 @@ public class UserDaoImpDataBase implements UserDao {
     }
 
     @Override
-    public void insert(User user) {
-        Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(user);
-    }
-
-    @Override
-    public void edit(User user) {
-
-    }
-
-    @Override
-    public void delete(int id) {
-
-    }
-
-    @Override
     public User isValidUser(String userName, String password) {
         Session session = sessionFactory.getCurrentSession();
         String hql = "FROM User WHERE userName=:userName " + "AND password=:password";
@@ -68,11 +51,6 @@ public class UserDaoImpDataBase implements UserDao {
             System.out.println(ex);
             return null;
         }
-    }
-
-    @Override
-    public User findByUserNameAndId(String userName, String id) {
-        return null;
     }
 }
 

@@ -1,12 +1,10 @@
 package com.valensmarcos.controller;
 
 import com.valensmarcos.model.Planet;
+import com.valensmarcos.model.PlanetObservation;
 import com.valensmarcos.model.Satellite;
 import com.valensmarcos.model.User;
-import com.valensmarcos.service.PlanetObservationQueryService;
-import com.valensmarcos.service.PlanetService;
-import com.valensmarcos.service.SatelliteService;
-import com.valensmarcos.service.UserService;
+import com.valensmarcos.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,13 +21,13 @@ import java.util.List;
 public class PlanetFormController {
 
     @Autowired
-    private PlanetService planetService;
+    private PlanetQueryService planetService;
 
     @Autowired
-    private SatelliteService satelliteService;
+    private SatelliteQueryService satelliteService;
 
     @Autowired
-    private UserService userService;
+    private UserQueryService userService;
 
     @Autowired
     private PlanetObservationQueryService planetObservationQueryService;
@@ -54,12 +52,14 @@ public class PlanetFormController {
 
     @PostMapping("/planetForm/savePlanet")
     public RedirectView save(HttpServletRequest request,
-                             @RequestParam("idPlanet") String idPlanet,
                              @RequestParam("namePlanet") String namePlanet,
                              @RequestParam("massPlanet") String massPlanet,
                              @RequestParam(value = "habitablePlanet", required = false) String habitablePlanet,
                              @RequestParam(value = "satellitesPlanet", required = false) String satellitesPlanet,
                              @RequestParam(value = "observation", required = false) String observation) {
+        HttpSession session = request.getSession();
+        User user = userService.findById((int) session.getAttribute("userId"));
+        PlanetObservation planetObservation = new PlanetObservation();
         Planet planet = new Planet();
         planet.setName(namePlanet);
         planet.setMass(Long.parseLong(massPlanet));
@@ -70,16 +70,17 @@ public class PlanetFormController {
                 planet.setHabitable((byte) 0);
             }
         }
-        if (!idPlanet.equals("")) {
-            planet.setId(Integer.parseInt(idPlanet));
-        }
-        planetService.save(planet);
+        planetObservation.setUser(user);
+        planetObservation.setPlanet(planet);
+        planetObservation.setObservations(observation);
+        planetService.saveOrUpdate(planet);
+        planetObservationQueryService.saveOrUpdate(planetObservation);
         if (satellitesPlanet != null) {
             String[] satellitesForUpdate = satellitesPlanet.split(",");
             for (String satelliteId : satellitesForUpdate) {
                 Satellite updatedSatellite = satelliteService.byId(Long.parseLong(satelliteId));
                 updatedSatellite.setPlanet(planet);
-                satelliteService.save(updatedSatellite);
+                satelliteService.saveOrUpdate(updatedSatellite);
             }
         }
         return new RedirectView("../planets");

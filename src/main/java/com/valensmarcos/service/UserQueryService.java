@@ -12,5 +12,4 @@ public interface UserQueryService {
 
     User validation(String userName, String password);
 
-    User findByUserNameAndId(String userName, String id);
 }

@@ -24,7 +24,7 @@ public class Planet {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "planet", orphanRemoval = true)
     private List<Satellite> satellites;
 
-    @OneToMany(mappedBy = "planet")
+    @OneToMany(mappedBy = "planet", orphanRemoval = true)
     private List<PlanetObservation> planetObservations;
 
     public Planet() {
