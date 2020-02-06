@@ -79,6 +79,7 @@ public class PlanetFormController {
             }
         }
         planetObservation.setPlanet(planet);
+        planetObservation.setUser(user);
         if (!observation.equals("")) {
             planetObservation.setObservations(observation);
         } else planetObservation.setObservations(null);

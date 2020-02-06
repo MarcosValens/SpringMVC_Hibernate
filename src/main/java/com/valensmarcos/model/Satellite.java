@@ -1,10 +1,13 @@
 package com.valensmarcos.model;
 
+import org.hibernate.envers.Audited;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "satelit")
+@Audited
 public class Satellite {
 
     @Id

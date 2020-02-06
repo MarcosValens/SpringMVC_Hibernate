@@ -1,11 +1,14 @@
 package com.valensmarcos.model;
 
+import org.hibernate.envers.Audited;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "usuari")
+@Audited
 public class User {
 
     @Id
