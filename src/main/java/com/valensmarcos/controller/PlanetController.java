@@ -32,6 +32,7 @@ public class PlanetController {
 
     @GetMapping("/planets")
     public String getPlanets(Model model, HttpServletRequest request) {
+
         List<Planet> planets = planetService.findAll();
         List<Satellite> satellites = satelliteService.findAll();
         int userId = 0;

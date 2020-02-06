@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page isELIgnored="false" %>
-<%@ page session="true" %>
 <html>
 <head>
     <title>Planets</title>
@@ -60,8 +59,6 @@
             </c:forEach>
         </tr>
     </c:forEach>
-    <p>user:${user.id}</p>
-    <p>observation:${observation.get(0).user.id}</p>
 </table>
 </body>
 </html>

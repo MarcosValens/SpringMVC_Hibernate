@@ -20,12 +20,14 @@ public class PlanetDaoImpDataBase implements PlanetDao {
 
     @Override
     public Planet findById(int id) {
+
         Session currentSession = sessionFactory.getCurrentSession();
         return currentSession.get(Planet.class, id);
     }
 
     @Override
     public List<Planet> findAll() {
+
         Session session = sessionFactory.getCurrentSession();
         CriteriaBuilder cb = session.getCriteriaBuilder();
         CriteriaQuery<Planet> cq = cb.createQuery(Planet.class);
@@ -37,12 +39,14 @@ public class PlanetDaoImpDataBase implements PlanetDao {
 
     @Override
     public void insertOrUpdate(Planet planet) {
+
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(planet);
     }
 
     @Override
     public void delete(int id) {
+
         Session session = sessionFactory.getCurrentSession();
         Planet planet = session.byId(Planet.class).load(id);
         session.delete(planet);

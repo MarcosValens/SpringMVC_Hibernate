@@ -15,16 +15,19 @@ public class SatelliteService implements SatelliteQueryService {
 
     @Override
     public List<Satellite> findAll() {
+
         return satelliteDao.findAll();
     }
 
     @Override
     public Satellite byId(long id) {
+
         return satelliteDao.byId(id);
     }
 
     @Override
     public void saveOrUpdate(Satellite satellite) {
+
         satelliteDao.edit(satellite);
     }
 }

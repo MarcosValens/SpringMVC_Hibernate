@@ -22,6 +22,7 @@ public class UserDaoImpDataBase implements UserDao {
 
     @Override
     public User findById(int id) {
+
         Session session = sessionFactory.getCurrentSession();
         return session.get(User.class, id);
     }
@@ -40,6 +41,7 @@ public class UserDaoImpDataBase implements UserDao {
 
     @Override
     public User isValidUser(String userName, String password) {
+
         Session session = sessionFactory.getCurrentSession();
         String hql = "FROM User WHERE userName=:userName " + "AND password=:password";
         Query query = session.createQuery(hql);
@@ -53,4 +55,3 @@ public class UserDaoImpDataBase implements UserDao {
         }
     }
 }
-

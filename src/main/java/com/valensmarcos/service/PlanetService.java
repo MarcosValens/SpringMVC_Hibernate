@@ -15,21 +15,25 @@ public class PlanetService implements PlanetQueryService {
 
     @Override
     public List<Planet> findAll() {
+
         return planetDao.findAll();
     }
 
     @Override
     public Planet getById(int id){
+
         return planetDao.findById(id);
     }
 
     @Override
     public void saveOrUpdate(Planet planet){
+
         planetDao.insertOrUpdate(planet);
     }
 
     @Override
     public void delete(int id) {
+
         planetDao.delete(id);
     }
 }

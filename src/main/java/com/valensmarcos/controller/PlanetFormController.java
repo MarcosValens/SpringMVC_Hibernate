@@ -34,6 +34,7 @@ public class PlanetFormController {
 
     @GetMapping("/planetForm")
     public String savePlanet(Model model) {
+
         List<Satellite> satellites = satelliteService.findAll();
         model.addAttribute("satellites", satellites);
         return "addPlanet";
@@ -41,10 +42,9 @@ public class PlanetFormController {
 
     @GetMapping("/planetForm/{idPlanet}")
     public String updatePlanet(Model model, @PathVariable(value = "idPlanet", required = false) String idPlanet) {
-        if (idPlanet != null) {
-            Planet planet = planetService.getById(Integer.parseInt(idPlanet));
-            model.addAttribute("planet", planet);
-        }
+
+        Planet planet = planetService.getById(Integer.parseInt(idPlanet));
+        model.addAttribute("planet", planet);
         List<Satellite> satellites = satelliteService.findAll();
         model.addAttribute("satellites", satellites);
         return "addPlanet";
@@ -52,15 +52,23 @@ public class PlanetFormController {
 
     @PostMapping("/planetForm/savePlanet")
     public RedirectView save(HttpServletRequest request,
+                             @RequestParam("idPlanet") String idPlanet,
                              @RequestParam("namePlanet") String namePlanet,
                              @RequestParam("massPlanet") String massPlanet,
                              @RequestParam(value = "habitablePlanet", required = false) String habitablePlanet,
                              @RequestParam(value = "satellitesPlanet", required = false) String satellitesPlanet,
                              @RequestParam(value = "observation", required = false) String observation) {
+
         HttpSession session = request.getSession();
         User user = userService.findById((int) session.getAttribute("userId"));
         PlanetObservation planetObservation = new PlanetObservation();
-        Planet planet = new Planet();
+        Planet planet;
+        if (!idPlanet.equals("")) {
+            planet = planetService.getById(Integer.parseInt(idPlanet));
+            planetObservation = planetObservationQueryService.getByUserIdAndPlanetId(user,planet);
+        } else {
+            planet = new Planet();
+        }
         planet.setName(namePlanet);
         planet.setMass(Long.parseLong(massPlanet));
         if (habitablePlanet != null) {
@@ -70,9 +78,10 @@ public class PlanetFormController {
                 planet.setHabitable((byte) 0);
             }
         }
-        planetObservation.setUser(user);
         planetObservation.setPlanet(planet);
-        planetObservation.setObservations(observation);
+        if (!observation.equals("")) {
+            planetObservation.setObservations(observation);
+        } else planetObservation.setObservations(null);
         planetService.saveOrUpdate(planet);
         planetObservationQueryService.saveOrUpdate(planetObservation);
         if (satellitesPlanet != null) {

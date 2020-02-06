@@ -1,12 +1,14 @@
 package com.valensmarcos.model;
 
 import org.hibernate.annotations.Type;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "usuari_has_planeta")
+@Audited
 public class PlanetObservation {
 
     @Id

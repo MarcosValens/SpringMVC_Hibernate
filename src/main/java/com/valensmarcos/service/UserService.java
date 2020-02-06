@@ -20,12 +20,13 @@ public class UserService implements UserQueryService {
 
     @Override
     public User findById(int id) {
+
         return userDao.findById(id);
     }
 
     @Override
     public User validation(String userName, String password) {
+
         return userDao.isValidUser(userName, password);
     }
-
 }

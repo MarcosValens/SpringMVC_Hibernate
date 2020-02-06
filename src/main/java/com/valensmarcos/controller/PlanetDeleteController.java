@@ -34,6 +34,7 @@ public class PlanetDeleteController {
 
     @PostMapping("/deletePlanet")
     public String toPlanetForm(@RequestParam("idPlanet") String id, Model model, HttpServletRequest request) {
+
         planetService.delete(Integer.parseInt(id));
         HttpSession session = request.getSession();
         User user = userService.findById((int) session.getAttribute("userId"));

@@ -18,6 +18,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+
         HttpSession session = request.getSession();
         Duration duration;
         String validate = (String) request.getSession().getAttribute("validate");
@@ -26,7 +27,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
         if (lastActivity != null) {
             duration = Duration.between(now, lastActivity);
             long diff = Math.abs(duration.toMinutes());
-            if (diff > 5) {
+            if (diff > 1) {
                 session.invalidate();
                 try {
                     response.sendRedirect("login");

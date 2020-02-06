@@ -20,6 +20,7 @@ public class SatelliteDaoImpDataBase implements SatelliteDao {
 
     @Override
     public List<Satellite> findAll() {
+
         Session session = sessionFactory.getCurrentSession();
         CriteriaBuilder cb = session.getCriteriaBuilder();
         CriteriaQuery<Satellite> cq = cb.createQuery(Satellite.class);
@@ -31,12 +32,14 @@ public class SatelliteDaoImpDataBase implements SatelliteDao {
 
     @Override
     public void edit(Satellite satellite) {
+
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(satellite);
     }
 
     @Override
     public Satellite byId(long id) {
+
         Session currentSession = sessionFactory.getCurrentSession();
         return currentSession.get(Satellite.class, id);
     }
