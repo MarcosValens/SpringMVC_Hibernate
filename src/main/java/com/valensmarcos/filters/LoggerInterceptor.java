@@ -42,6 +42,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
                 e.printStackTrace();
             }
         }
+        System.out.println("test");
         return validate != null && validate.equals("YES");
     }
 }
