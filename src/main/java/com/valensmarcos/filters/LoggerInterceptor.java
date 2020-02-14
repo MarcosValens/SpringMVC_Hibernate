@@ -27,7 +27,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
         if (lastActivity != null) {
             duration = Duration.between(now, lastActivity);
             long diff = Math.abs(duration.toMinutes());
-            if (diff > 5) {
+            if (diff > 1) {
                 session.invalidate();
                 try {
                     response.sendRedirect("login");
@@ -42,7 +42,6 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
                 e.printStackTrace();
             }
         }
-        System.out.println("test");
         return validate != null && validate.equals("YES");
     }
 }

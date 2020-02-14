@@ -1,6 +1,7 @@
 package com.valensmarcos.model;
 
 import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 import javax.persistence.*;
 import java.util.List;
@@ -24,9 +25,11 @@ public class Planet {
     @Column(name = "habitable", nullable = false)
     private byte habitable;
 
+    @NotAudited
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "planet", orphanRemoval = true)
     private List<Satellite> satellites;
 
+    @NotAudited
     @OneToMany(mappedBy = "planet", orphanRemoval = true)
     private List<PlanetObservation> planetObservations;
 
