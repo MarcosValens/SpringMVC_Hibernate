@@ -32,7 +32,7 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
 
-            <version>6.1.13</version>
+            <version>6.1.14</version>
         </dependency>
 
         <dependency>
